@@ -2,12 +2,19 @@
 
 ![Project Status](https://img.shields.io/badge/Status-Completed-success)
 ![Subject](https://img.shields.io/badge/Subject-Power_System_Analysis-blue)
-![Tools](https://img.shields.io/badge/Tools-PowerWorld%20%7C%20MATLAB-orange)
+![Language](https://img.shields.io/badge/Language-MATLAB-orange)
+![Simulation](https://img.shields.io/badge/Simulation-PowerWorld-red)
 
 ## 📖 Project Overview
 This project performs a steady-state **Load Flow Analysis** on a 9-bus power system. The study determines bus voltages, phase angles, and power flows to assess system performance under specified load and generation conditions. 
 
 The analysis was conducted using the **Newton-Raphson method**, implemented mathematically in **MATLAB** and validated using **PowerWorld Simulator** software. This project was submitted as part of the *Power System Analysis Sessional (EEE-3520)* course.
+
+## 📂 Project Structure
+* `NewtonRaphson_LoadFlow.m`: The main MATLAB script that calculates the Y-Bus matrix, Jacobian matrix, and iteratively solves for bus voltages and angles.
+* `Project_Report.pdf`: The detailed engineering report explaining the methodology and student ID-based parameter derivation.
+* `Simulation_Design.pwb`: (Optional) The PowerWorld Simulator file.
+* `images/`: Folder containing simulation screenshots and single-line diagrams.
 
 ## 🎯 Objectives
 * **Determine** voltage magnitudes and phase angles at all buses.
@@ -16,28 +23,25 @@ The analysis was conducted using the **Newton-Raphson method**, implemented math
 * **Compare** results between the numerical MATLAB algorithm and PowerWorld simulation.
 
 ## ⚙️ System Specifications
-The power system modeled in this project consists of **9 Buses** interconnected by 10 transmission lines. The specific parameters (Resistance, Reactance, Generation, and Load) were derived using a unique algorithm based on Student ID **ET231056**.
+The power system modeled in this project consists of **9 Buses** interconnected by 10 transmission lines. The specific parameters were derived using a unique algorithm based on Student ID **ET231056**.
 
 * **Bus Types:**
     * **1 Slack Bus:** Bus 1 (Voltage fixed at 1.0 p.u., 0°).
     * **2 PV (Generator) Buses:** Bus 2 & 3.
     * **6 PQ (Load) Buses:** Bus 4 through 9.
 * **Base Values:** 100 MVA, 25 kV.
+* **Line Parameters:** R = 0.0032 p.u., X = 0.0256 p.u.
 
-## 🛠️ Requirements & Tools Used
-To replicate or view this project, you will need the following software:
+## 🚀 How to Run the Code
+To verify the load flow results using the numerical method:
 
-1.  **PowerWorld Simulator** (Primary Tool)
-    * Used for modeling the single-line diagram and running the load flow simulation.
-2.  **MATLAB** (Verification Tool)
-    * Used to manually implement the Newton-Raphson algorithm and verify the Jacobian matrix calculations.
-
-## 📊 Methodology
-The project follows these steps:
-1.  **Data Calculation:** Deriving line impedance and bus data from the unique ID constraints.
-2.  **Y-Bus Matrix Formation:** Constructing the admittance matrix based on line data.
-3.  **Newton-Raphson Algorithm:** Iteratively solving non-linear power flow equations until convergence (tolerance < 1e-6 p.u.).
-4.  **Simulation:** Modeling the network in PowerWorld to visualize power flow and validate MATLAB results.
+1.  Open **MATLAB**.
+2.  Open the file `NewtonRaphson_LoadFlow.m`.
+3.  Run the script.
+4.  The Command Window will output:
+    * **Final Bus Voltages & Angles** (Compare these with Table 1 in the report).
+    * **Power Injections** (Generated vs. Consumed Power).
+    * **Line Power Flows** (MW and MVAr flow between buses).
 
 ## 📈 Key Results
 The analysis yielded the following findings regarding the system's steady-state operation:
@@ -47,8 +51,7 @@ The analysis yielded the following findings regarding the system's steady-state 
 * **System Losses:**
     * Active Power Loss: **11.03 MW** (~1.6%).
     * Reactive Power Loss: **88.26 MVAr**.
-* **Voltage Profile:**
-All buses remained within the standard ±5% limit. The lowest voltage was observed at **Bus 8 (0.977 p.u.)**, indicating a potential need for reactive compensation in that area.
+* **Voltage Profile:** All buses remained within the standard ±5% limit. The lowest voltage was observed at **Bus 8 (0.977 p.u.)**.
 
 ## 📸 Screenshots
 
